@@ -16,6 +16,7 @@ class Template {
         return $this;
     }
     
+    
     public function ReplacePage(){
         
      $this->html=str_replace('{page}',$this->somepage,$this->html); 
