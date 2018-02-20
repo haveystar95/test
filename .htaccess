@@ -1,0 +1,27 @@
+addDefaultCharset UTF-8
+
+
+RemoveHandler .html .htm
+AddType application/x-httpd-php .php .htm .html .phtml
+
+
+RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^www\.(.*) [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+
+
+RewriteRule ^([a-zA-Z0-9_\-]+)$ /$1/  [R,L]
+RewriteRule ^([a-zA-Z0-9_\-]+)/$ ?controller=$1 [L,QSA]
+
+
+RewriteCond %{THE_REQUEST} !\.php(\?.|\ .)
+RewriteRule ^([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)$ /$1/$2/ [R,L]
+RewriteRule ^([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/$ ?controller=$1&method=$2 [L,QSA]
+
+
+
+RewriteRule ^([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)$ /$1/$2/$3/ [R,L]
+RewriteRule ^([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/$ ?controller=$1&method=$2&id=$3 [L,QSA]
+
